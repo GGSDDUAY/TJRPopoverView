@@ -49,7 +49,7 @@
     // 设置事件代理以及数据代理
     self.tableVC.tableView.delegate = self;
     self.tableVC.tableView.dataSource = self;
-    
+
     // 初始化弹出框，弹出框中封装的必须是ViewController对象
     self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.tableVC] autorelease];
     // 设置弹出框大小
@@ -61,13 +61,12 @@
  */
 - (void)presentPopover {
     
-    // 根据弹出框的大小，重置列表大小
-    self.tableVC.tableView.frame = CGRectMake(0, 0, CGRectGetWidth(self.popoverFromRect), CGRectGetHeight(self.popoverFromRect));
     // 推出弹出框
-    // 参数1：弹出框大小
+    // 参数1：弹出框位置，系统可根据传入的触发控件自行计算
     // 参数2：由哪一个view弹出（注意：这里没有处理循环引用的情况，所以inView最好不要是superView）
     // 参数3：箭头方向
     // 参数4：是否需要动画效果
+    // TODO: 处理inView的循环引用
     [self.popoverController presentPopoverFromRect:_popoverFromRect inView:self.inView permittedArrowDirections:_arrowDiretion animated:YES];
 }
 
