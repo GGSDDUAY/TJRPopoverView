@@ -11,7 +11,7 @@
 @interface TJRPopoverView () <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 
 @property (nonatomic, retain) UIPopoverController *popoverController;
-@property (nonatomic, retain) UITableViewController *tableVC;
+@property (nonatomic, retain) UITableView *tableView;
 
 // 初始化用户界面
 - (void)initializeUserInterface;
@@ -33,7 +33,7 @@
 - (void)dealloc {
     
     [_dataSource release];
-    [_tableVC release];
+    [_tableView release];
     [_popoverController release];
     [super dealloc];
 }
@@ -44,16 +44,18 @@
 - (void)initializeUserInterface {
     
     // 初始化弹出框中的列表视图
-    self.tableVC = [[[UITableViewController alloc] init] autorelease];
-    self.tableVC.tableView = [[[UITableView alloc] initWithFrame:CGRectMake(0, 0, 180, 220) style:UITableViewStylePlain] autorelease];
+    UIViewController *viewController = [[UIViewController alloc] init];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 180, 220) style:UITableViewStylePlain];
+    [viewController.view addSubview:_tableView];
+    
     // 设置事件代理以及数据代理
-    self.tableVC.tableView.delegate = self;
-    self.tableVC.tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
 
     // 初始化弹出框，弹出框中封装的必须是ViewController对象
-    self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.tableVC] autorelease];
+    self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:viewController] autorelease];
     // 设置弹出框大小
-    self.popoverController.popoverContentSize = self.tableVC.tableView.bounds.size;
+    self.popoverController.popoverContentSize = _tableView.bounds.size;
 }
 
 /**
@@ -76,7 +78,7 @@
  */
 - (void)reloadPopover {
     
-    [self.tableVC.tableView reloadData];
+    [_tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource methods
