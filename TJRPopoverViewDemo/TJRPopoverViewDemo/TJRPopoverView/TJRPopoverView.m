@@ -131,7 +131,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // 当选中列表某行以后，触发代理方法，将选中行的下标返回
-    [self.delegate popoverViewDidSelectAtIndex:indexPath.row];
+    [self.delegate popoverView:self didSelectAtIndex:indexPath.row];
 }
 
 @end

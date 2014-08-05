@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class TJRPopoverView;
+
 @protocol TJRPopoverViewDelegate <NSObject>
 
 // 选中列表行后的回调方法
-- (void)popoverViewDidSelectAtIndex:(NSInteger)index;
+- (void)popoverView:(TJRPopoverView *)popoverView didSelectAtIndex:(NSInteger)index;
 
 @end
 

@@ -67,9 +67,9 @@
 
 #pragma mark - TJRPopoverViewDelegate methods
 
-- (void)popoverViewDidSelectAtIndex:(NSInteger)index {
+- (void)popoverView:(TJRPopoverView *)popoverView didSelectAtIndex:(NSInteger)index {
     
-    NSLog(@"选中第%d行，这一行的数据是：%@", index, _dataSource[index]);
+    NSLog(@"选中第%d行，这一行的数据是：%@", index, popoverView.dataSource[index]);
 }
 
 @end
