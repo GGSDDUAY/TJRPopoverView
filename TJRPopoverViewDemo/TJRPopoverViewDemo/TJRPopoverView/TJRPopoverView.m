@@ -39,6 +39,16 @@
     [super dealloc];
 }
 
+- (void)setDataSource:(NSArray *)dataSource {
+    
+    if (_dataSource != dataSource) {
+        
+        [_dataSource release];
+        _dataSource = [dataSource retain];
+        [_tableView reloadData];
+    }
+}
+
 /**
  *  初始化弹出框的用户界面
  */
