@@ -32,6 +32,7 @@
 
 - (void)dealloc {
     
+    [_inView release];
     [_dataSource release];
     [_tableView release];
     [_popoverController release];
