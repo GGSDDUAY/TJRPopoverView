@@ -67,6 +67,8 @@
     self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:viewController] autorelease];
     // 设置弹出框大小
     self.popoverController.popoverContentSize = _tableView.bounds.size;
+    
+    [viewController release];
 }
 
 /**
